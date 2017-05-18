@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/notices.iml" filepath="$PROJECT_DIR$/notices.iml" />
+      <module fileurl="file://$PROJECT_DIR$/notices-ear/notices-ear.iml" filepath="$PROJECT_DIR$/notices-ear/notices-ear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/notices-ejb/notices-ejb.iml" filepath="$PROJECT_DIR$/notices-ejb/notices-ejb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/notices-web/notices-web.iml" filepath="$PROJECT_DIR$/notices-web/notices-web.iml" />
+    </modules>
+  </component>
+</project>

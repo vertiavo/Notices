@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ear" name="notices-ear:ear">
+    <output-path>$PROJECT_DIR$/notices-ear/target</output-path>
+    <root id="archive" name="notices-ear-1.0.ear">
+      <element id="artifact" artifact-name="notices-ear:ear exploded" />
+    </root>
+  </artifact>
+</component>

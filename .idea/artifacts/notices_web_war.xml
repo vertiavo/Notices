@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="notices-web:war">
+    <output-path>$PROJECT_DIR$/notices-web/target</output-path>
+    <root id="archive" name="notices-web-1.0.war">
+      <element id="artifact" artifact-name="notices-web:war exploded" />
+    </root>
+  </artifact>
+</component>

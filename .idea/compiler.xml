@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="notices-ear" />
+        <module name="notices-ejb" />
+        <module name="notices-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="notices" target="1.8" />
+      <module name="notices-ear" target="1.8" />
+      <module name="notices-ejb" target="1.8" />
+      <module name="notices-web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
