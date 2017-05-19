@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en" lang="en"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Notices</title>
+</h:head>
+<h:body>
+    <p:dataTable id="noticeTable" value="#{noticeBean.notices}" var="notice" >
+        <p:column headerText="Title" >
+            #{notice.title}
+        </p:column>
+        <p:column headerText="Category">
+            #{notice.category}
+        </p:column>
+        <p:column headerText="Author">
+            #{notice.author}
+        </p:column>
+        <p:column headerText="Content">
+            #{notice.content}
+        </p:column>
+        <p:column headerText="Date">
+            #{notice.date}
+        </p:column>
+        <p:column headerText="Remove">
+            <p:commandButton icon="ui-icon-trash" title="Remove" action="#{noticeBean.onRemoveNotice(notice)}" update=":noticeTable" />
+        </p:column>
+    </p:dataTable>
+    <p:commandButton value="Add notice" action="#{noticeBean.onNoticeAdd()}" oncomplete="PF('NoticeDlg').show()" update=":NoticeDlgId" />
+
+    <p:dialog id="NoticeDlgId" widgetVar="NoticeDlg" dynamic="true" modal="true" >
+        <h:form>
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Title" for="titleId"/>
+                <p:inputText id="titleId" value="#{noticeBean.newNotice.title}" required="true" />
+
+                <p:outputLabel value="Category" for="categoryId"/>
+                <p:inputText id="categoryId" value="#{noticeBean.newNotice.category}"  required="true" />
+
+                <p:outputLabel value="Author" for="authorId"/>
+                <p:inputText id="authorId" value="#{noticeBean.newNotice.author}" required="true" />
+
+                <p:outputLabel value="Content" for="contentId"/>
+                <p:inputText id="contentId" value="#{noticeBean.newNotice.content}" required="true" />
+
+                <p:outputLabel value="Date" for="dateId"/>
+                <p:inputText id="dateId" value="#{noticeBean.newNotice.date}" required="true" />
+
+            </p:panelGrid>
+            <p:commandButton  value="Cancel" type="button" oncomplete="PF('NoticeDlg').hide()"  />
+            <p:commandButton value="Ok" action="#{noticeBean.onNoticeAdded()}"  update=":noticeTable" />
+        </h:form>
+    </p:dialog>
+</h:body>
+</html>

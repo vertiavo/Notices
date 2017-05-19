@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en" lang="en"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Authors</title>
+</h:head>
+<h:body>
+    <p:dataTable id="authorTable" value="#{authorBean.authors}" var="author" >
+        <p:column headerText="First Name" >
+            #{author.firstName}
+        </p:column>
+        <p:column headerText="Last Name">
+            #{author.lastName}
+        </p:column>
+        <p:column headerText="E-mail">
+            #{author.email}
+        </p:column>
+        <p:column headerText="Remove">
+            <p:commandButton icon="ui-icon-trash" title="Remove" action="#{authorBean.onRemoveAuthor(author)}" update=":authorTable" />
+        </p:column>
+    </p:dataTable>
+    <p:commandButton value="Add author" action="#{authorBean.onAuthorAdd()}" oncomplete="PF('AuthorDlg').show()" update=":AuthorDlgId" />
+
+    <p:dialog id="AuthorDlgId" widgetVar="AuthorDlg" dynamic="true" modal="true" >
+        <h:form>
+            <p:panelGrid columns="2">
+                <p:outputLabel value="First Name" for="firstNameId"/>
+                <p:inputText id="firstNameId" value="#{authorBean.newAuthor.firstName}" required="true" />
+
+                <p:outputLabel value="Last Name" for="lastNameId"/>
+                <p:inputText id="lastNameId" value="#{authorBean.newAuthor.lastName}" required="true" />
+
+                <p:outputLabel value="E-mail" for="emailId"/>
+                <p:inputText id="emailId" value="#{authorBean.newAuthor.email}"  required="true" />
+            </p:panelGrid>
+            <p:commandButton  value="Cancel" type="button" oncomplete="PF('AuthorDlg').hide()"  />
+            <p:commandButton value="Ok" action="#{authorBean.onAuthorAdded()}"  update=":authorTable" />
+        </h:form>
+    </p:dialog>
+</h:body>
+</html>
