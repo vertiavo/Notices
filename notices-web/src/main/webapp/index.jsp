@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="css/cover_page.css">
 </head>
 <body>
+
 <div class="site-wrapper">
     <div class="site-wrapper-inner">
         <div class="cover-container">
@@ -23,45 +24,41 @@
 
                     <ul class="nav masthead-nav">
                         <li class="active">
-                            <a href="index.jsp">Strona główna</a>
+                            <a href="index.jsp">Home page</a>
                         </li>
 
                         <li>
-                            <a href="category/category_list.xhtml">Kategorie</a>
+                            <a href="category/category_list.xhtml">Categories</a>
                         </li>
 
                         <li>
-                            <a href="notice/notice_list.xhtml">Ogłoszenia</a>
+                            <a href="notice/notice_list.xhtml">Notices</a>
                         </li>
 
                         <li>
-                            <a href="author/author_list.xhtml">Autorzy</a>
+                            <a href="author/author_list.xhtml">Authors</a>
                         </li>
 
                         <li>
-                            <a href="#">Zaloguj się</a>
-                        </li>
-
-                        <li>
-                            <a href="#">Kontakt</a>
+                            <a href="#">Sign in</a>
                         </li>
                     </ul>
                 </div>
             </div>
 
             <div class="inner cover">
-                <h1 class="cover-heading">Witaj w naszej bazie ogłoszeń.</h1>
+                <h1 class="cover-heading">Welcome in our notices website.</h1>
 
-                <p class="lead">By obejrzeć listę kategorii i wybrać, która Cię interesuje, kliknij zakładkę "Kategorie".<br>
-                    W celu przeszukania bazy ogłoszeń wybierz zakładkę "Ogłoszenia".<br>
+                <p class="lead">To watch categories list and decide, in which you are interested most, click "Categories" tab.<br>
+                    To browse through notices, click "Notices" tab.<br>
 
                     <small>
-                        <br>W razie problemów lub jakichkolwiek pytań kliknij poniżej by uzyskać pomoc
+                        <br>In case of any questions or problems, you can contact us by clicking button below.
                     </small>
 
                 </p>
 
-                <p class="lead"><a class="btn btn-lg btn-info" href="#">Dowiedz się więcej</a></p>
+                <p class="lead"><a class="btn btn-lg btn-info" href="#">Contact us</a></p>
             </div>
 
             <div class="mastfoot">

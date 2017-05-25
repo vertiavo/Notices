@@ -5,7 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="en" lang="en"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <title>Categories</title>
 </h:head>
@@ -22,12 +23,19 @@
 
     <p:dialog id="CategoryDlgId" widgetVar="CategoryDlg" dynamic="true" modal="true" >
         <h:form>
-            <p:panelGrid columns="2">
-                <p:outputLabel value="Title" for="titleId"/>
-                <p:inputText id="titleId" value="#{categoryBean.newCategory.title}" required="true" />
-            </p:panelGrid>
-            <p:commandButton  value="Cancel" type="button" oncomplete="PF('CategoryDlg').hide()"  />
-            <p:commandButton value="Ok" action="#{categoryBean.onCategoryAdded()}"  update=":categoryTable" />
+
+                <p:panelGrid columns="3" cellpadding="5">
+                    <p:outputLabel value="Title" for="titleId"/>
+                    <p:inputText id="titleId" value="#{categoryBean.newCategory.title}" required="true" >
+                        <f:validateLength minimum="2" />
+                        <p:ajax update="msgTitle" event="keyup" />
+                    </p:inputText>
+                    <p:message for="titleId" id="msgTitle" display="icon" />
+                </p:panelGrid>
+
+                <p:commandButton value="Cancel" oncomplete="PF('CategoryDlg').hide()" icon="ui-icon-close" />
+                <p:commandButton value="Ok" action="#{categoryBean.onCategoryAdded()}" update=":categoryTable" icon="ui-icon-check" />
+
         </h:form>
     </p:dialog>
 </h:body>
