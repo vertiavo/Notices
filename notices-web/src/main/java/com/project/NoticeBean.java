@@ -8,6 +8,7 @@ import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,6 +37,7 @@ public class NoticeBean implements Serializable {
     }
 
     public void onNoticeAdded() {
+        newNotice.setDate(new Date());
         dao.save(newNotice);
         RequestContext.getCurrentInstance().execute("PF('NoticeDlg').hide()");
     }

@@ -10,6 +10,7 @@
     <title>Notices</title>
 </h:head>
 <h:body>
+    <h:form id="noticeForm">
     <p:dataTable id="noticeTable" value="#{noticeBean.notices}" var="notice" >
         <p:column headerText="Title" >
             #{notice.title}
@@ -27,10 +28,11 @@
             #{notice.date}
         </p:column>
         <p:column headerText="Remove">
-            <p:commandButton icon="ui-icon-trash" title="Remove" action="#{noticeBean.onRemoveNotice(notice)}" update=":noticeTable" />
+            <p:commandButton icon="ui-icon-trash" title="Remove" action="#{noticeBean.onRemoveNotice(notice)}" update=":noticeForm:noticeTable" />
         </p:column>
     </p:dataTable>
     <p:commandButton value="Add notice" action="#{noticeBean.onNoticeAdd()}" oncomplete="PF('NoticeDlg').show()" update=":NoticeDlgId" />
+    </h:form>
 
     <p:dialog id="NoticeDlgId" widgetVar="NoticeDlg" dynamic="true" modal="true" >
         <h:form>
@@ -66,7 +68,7 @@
             </p:panelGrid>
 
             <p:commandButton value="Cancel" oncomplete="PF('NoticeDlg').hide()" icon="ui-icon-close" />
-            <p:commandButton value="Ok" action="#{noticeBean.onNoticeAdded()}" update=":noticeTable" icon="ui-icon-check" />
+            <p:commandButton value="Ok" action="#{noticeBean.onNoticeAdded()}" update=":noticeForm:noticeTable" icon="ui-icon-check" />
 
         </h:form>
     </p:dialog>

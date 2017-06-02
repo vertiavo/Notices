@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xml:lang="en" lang="en"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Home Page</title>
+    <h:outputStylesheet library="css" name="bootstrap.css"/>
+    <h:outputStylesheet library="css" name="cover_page.css"/>
+</h:head>
+<h:body>
+
+    <div class="site-wrapper">
+        <div class="site-wrapper-inner">
+            <div class="cover-container">
+
+                <ui:insert name="top">
+                    <div class="masthead clearfix">
+                        <div class="inner">
+                            <h3 class="masthead-brand">Notices</h3>
+
+                            <ul class="nav masthead-nav">
+                                <li class="active">
+                                    <a href="index.jsp">Home page</a>
+                                </li>
+
+                                <li>
+                                    <a href="category/category_list.xhtml">Categories</a>
+                                </li>
+
+                                <li>
+                                    <a href="notice/notice_list.xhtml">Notices</a>
+                                </li>
+
+                                <li>
+                                    <a href="author/author_list.xhtml">Authors</a>
+                                </li>
+
+                                <li>
+                                    <a href="#">Sign in</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </ui:insert>
+
+                <ui:insert name="content">
+                    <div class="inner cover">
+                        <h1 class="cover-heading">Welcome in our notices website.</h1>
+
+                        <p class="lead">To watch categories list and decide, in which you are interested most, click "Categories" tab.<br/>
+                            To browse through notices, click "Notices" tab.<br/>
+
+                            <small>
+                                <br/>In case of any questions or problems, you can contact us by clicking button below.
+                            </small>
+
+                        </p>
+
+                        <p class="lead"><a class="btn btn-lg btn-info" href="#">Contact us</a></p>
+                    </div>
+                </ui:insert>
+
+                <ui:insert name="bottom">
+                    <div class="mastfoot">
+                        <div class="inner">
+                            <p>© 2017 M&amp;P Team</p>
+                        </div>
+                    </div>
+                </ui:insert>
+
+            </div>
+        </div>
+    </div>
+    <h:outputStylesheet library="js" name="bootstrap.js"/>
+    <h:outputStylesheet library="js" name="jquery-3.2.1.js"/>
+</h:body>
+</html>

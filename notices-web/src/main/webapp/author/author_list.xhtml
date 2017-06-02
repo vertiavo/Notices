@@ -11,6 +11,7 @@
     <title>Authors</title>
 </h:head>
 <h:body>
+    <h:form id="authorForm">
     <p:dataTable id="authorTable" value="#{authorBean.authors}" var="author" >
         <p:column headerText="First Name" >
             #{author.firstName}
@@ -22,10 +23,11 @@
             #{author.email}
         </p:column>
         <p:column headerText="Remove">
-            <p:commandButton icon="ui-icon-trash" title="Remove" action="#{authorBean.onRemoveAuthor(author)}" update=":authorTable" />
+            <p:commandButton icon="ui-icon-trash" title="Remove" action="#{authorBean.onRemoveAuthor(author)}" update=":authorForm:authorTable" />
         </p:column>
     </p:dataTable>
     <p:commandButton value="Add author" action="#{authorBean.onAuthorAdd()}" oncomplete="PF('AuthorDlg').show()" update=":AuthorDlgId" />
+    </h:form>
 
     <p:dialog id="AuthorDlgId" widgetVar="AuthorDlg" dynamic="true" modal="true" >
         <h:form>
@@ -50,7 +52,7 @@
             </p:panelGrid>
 
             <p:commandButton value="Cancel" oncomplete="PF('AuthorDlg').hide()" icon="ui-icon-close" />
-            <p:commandButton value="Ok" action="#{authorBean.onAuthorAdded()}" update=":authorTable" icon="ui-icon-check" />
+            <p:commandButton value="Ok" action="#{authorBean.onAuthorAdded()}" update=":authorForm:authorTable" icon="ui-icon-check" />
 
         </h:form>
     </p:dialog>

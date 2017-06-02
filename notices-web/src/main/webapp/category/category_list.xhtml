@@ -11,30 +11,31 @@
     <title>Categories</title>
 </h:head>
 <h:body>
-    <p:dataTable id="categoryTable" value="#{categoryBean.categories}" var="category" >
-        <p:column headerText="Title" >
-            #{category.title}
-        </p:column>
-        <p:column headerText="Remove">
-            <p:commandButton icon="ui-icon-trash" title="Remove" action="#{categoryBean.onRemoveCategory(category)}" update=":categoryTable" />
-        </p:column>
-    </p:dataTable>
-    <p:commandButton value="Add category" action="#{categoryBean.onCategoryAdd()}" oncomplete="PF('CategoryDlg').show()" update=":CategoryDlgId" />
-
+    <h:form id="categoryForm">
+        <p:dataTable id="categoryTable" value="#{categoryBean.categories}" var="category" >
+            <p:column headerText="Title" >
+                #{category.title}
+            </p:column>
+            <p:column headerText="Remove">
+                <p:commandButton icon="ui-icon-trash" title="Remove" action="#{categoryBean.onRemoveCategory(category)}" update=":categoryForm:categoryTable" />
+            </p:column>
+        </p:dataTable>
+        <p:commandButton value="Add category" action="#{categoryBean.onCategoryAdd()}" oncomplete="PF('CategoryDlg').show()" update=":CategoryDlgId" />
+    </h:form>
     <p:dialog id="CategoryDlgId" widgetVar="CategoryDlg" dynamic="true" modal="true" >
         <h:form>
 
-                <p:panelGrid columns="3" cellpadding="5">
-                    <p:outputLabel value="Title" for="titleId"/>
-                    <p:inputText id="titleId" value="#{categoryBean.newCategory.title}" required="true" >
-                        <f:validateLength minimum="2" />
-                        <p:ajax update="msgTitle" event="keyup" />
-                    </p:inputText>
-                    <p:message for="titleId" id="msgTitle" display="icon" />
-                </p:panelGrid>
+            <p:panelGrid columns="3" cellpadding="5">
+                <p:outputLabel value="Title" for="titleId"/>
+                <p:inputText id="titleId" value="#{categoryBean.newCategory.title}" required="true" >
+                    <f:validateLength minimum="2" />
+                    <p:ajax update="msgTitle" event="keyup" />
+                </p:inputText>
+                <p:message for="titleId" id="msgTitle" display="icon" />
+            </p:panelGrid>
 
-                <p:commandButton value="Cancel" oncomplete="PF('CategoryDlg').hide()" icon="ui-icon-close" />
-                <p:commandButton value="Ok" action="#{categoryBean.onCategoryAdded()}" update=":categoryTable" icon="ui-icon-check" />
+            <p:commandButton value="Cancel" oncomplete="PF('CategoryDlg').hide()" icon="ui-icon-close" />
+            <p:commandButton value="Ok" action="#{categoryBean.onCategoryAdded()}" update=":categoryForm:categoryTable" icon="ui-icon-check" />
 
         </h:form>
     </p:dialog>
