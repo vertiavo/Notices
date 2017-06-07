@@ -5,8 +5,12 @@
     <class>com.project.model.Author</class>
     <class>com.project.model.Category</class>
     <class>com.project.model.Notice</class>
+    <class>com.project.model.UserGroup</class>
+    <class>com.project.model.UserCredentials</class>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+      <property name="javax.persistence.sql-load-script-source" value="META-INF/mock.sql" />
+      <property name="eclipselink.logging.level.sql" value="FINE"/>
     </properties>
   </persistence-unit>
 </persistence>

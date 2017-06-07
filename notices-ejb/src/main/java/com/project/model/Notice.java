@@ -18,17 +18,17 @@ public class Notice implements Serializable {
 
     private String title;
 
-    @ManyToOne
-    @JoinColumn(name = "ID_CATEGORY", referencedColumnName = "ID")
-    private Category category;
-
-    @ManyToOne
-    @JoinColumn(name = "ID_AUTHOR", referencedColumnName = "ID")
+    @ManyToOne()
     private Author author;
+
+    @ManyToOne()
+    private Category category;
 
     private String content;
 
     private Date date;
+
+    private Type type;
 
     public Long getId() {
         return id;
@@ -72,6 +72,14 @@ public class Notice implements Serializable {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     @Override

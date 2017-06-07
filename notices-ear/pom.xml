@@ -9,7 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.project</groupId>
     <artifactId>notices-ear</artifactId>
+    <version>1.0</version>
     <packaging>ear</packaging>
     <name>notices-ear</name>
 

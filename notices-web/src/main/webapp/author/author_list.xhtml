@@ -12,23 +12,36 @@
 </h:head>
 <h:body>
     <h:form id="authorForm">
-    <p:dataTable id="authorTable" value="#{authorBean.authors}" var="author" >
-        <p:column headerText="First Name" >
-            #{author.firstName}
-        </p:column>
-        <p:column headerText="Last Name">
-            #{author.lastName}
-        </p:column>
-        <p:column headerText="E-mail">
-            #{author.email}
-        </p:column>
-        <p:column headerText="Remove">
-            <p:commandButton icon="ui-icon-trash" title="Remove" action="#{authorBean.onRemoveAuthor(author)}" update=":authorForm:authorTable" />
-        </p:column>
-    </p:dataTable>
-    <p:commandButton value="Add author" action="#{authorBean.onAuthorAdd()}" oncomplete="PF('AuthorDlg').show()" update=":AuthorDlgId" />
+        <p:panel header="Authors">
+            <p:outputPanel rendered="#{p:userPrincipal()==null}">
+                <p:button value="Login" outcome="/login.xhtml" style="margin-right: 10px;"/>
+                <h:outputText value="You are not logged in! Add/Remove options are not available"/>
+
+            </p:outputPanel>
+            <p:outputPanel rendered="#{p:userPrincipal()!=null}">
+                <p:commandButton value="Logout" action="#{loginBean.logout}" style="margin-right: 10px;"/>
+                <h:outputText value="You are logged in as: #{p:remoteUser()}"/>
+            </p:outputPanel>
+        </p:panel>
+
+        <p:dataTable id="authorTable" value="#{authorBean.authors}" var="author" >
+            <p:column headerText="First Name" >
+                #{author.firstName}
+            </p:column>
+            <p:column headerText="Last Name">
+                #{author.lastName}
+            </p:column>
+            <p:column headerText="E-mail">
+                #{author.email}
+            </p:column>
+            <p:column rendered="#{p:userPrincipal()!=null}" headerText="Remove" >
+                <p:commandButton icon="ui-icon-trash" title="Remove" action="#{authorBean.onRemoveAuthor(author)}" update=":authorForm:authorTable" />
+            </p:column>
+        </p:dataTable>
+        <p:commandButton rendered="#{p:userPrincipal()!=null}" value="Add author" action="#{authorBean.onAuthorAdd()}" oncomplete="PF('AuthorDlg').show()" update=":AuthorDlgId" />
     </h:form>
 
+    <p:link value="Link to protected page" outcome="/restricted/restricted.xhtml" />
     <p:dialog id="AuthorDlgId" widgetVar="AuthorDlg" dynamic="true" modal="true" >
         <h:form>
 
@@ -48,7 +61,10 @@
                 <p:message for="lastNameId" id="msgLName" display="icon" />
 
                 <p:outputLabel value="E-mail" for="emailId"/>
-                <p:inputText id="emailId" value="#{authorBean.newAuthor.email}"  required="true" />
+                <p:inputText id="emailId" value="#{authorBean.newAuthor.email}" required="true">
+                    <p:keyFilter regEx="/[a-z0-9_\.\-@]/i"/>
+                </p:inputText>
+
             </p:panelGrid>
 
             <p:commandButton value="Cancel" oncomplete="PF('AuthorDlg').hide()" icon="ui-icon-close" />

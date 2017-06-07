@@ -1,4 +1,4 @@
-package com.project;
+package com.project.controller;
 
 import com.project.ejb.CategoryDao;
 import com.project.model.Category;

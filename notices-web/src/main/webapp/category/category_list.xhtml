@@ -12,16 +12,30 @@
 </h:head>
 <h:body>
     <h:form id="categoryForm">
+        <p:panel header="Categories">
+            <p:outputPanel rendered="#{p:userPrincipal()==null}">
+                <p:button value="Login" outcome="/login.xhtml" style="margin-right: 10px;"/>
+                <h:outputText value="You are not logged in! Add/Remove options are not available"/>
+
+            </p:outputPanel>
+            <p:outputPanel rendered="#{p:userPrincipal()!=null}">
+                <p:commandButton value="Logout" action="#{loginBean.logout}" style="margin-right: 10px;"/>
+                <h:outputText value="You are logged in as: #{p:remoteUser()}"/>
+            </p:outputPanel>
+        </p:panel>
+
         <p:dataTable id="categoryTable" value="#{categoryBean.categories}" var="category" >
             <p:column headerText="Title" >
                 #{category.title}
             </p:column>
-            <p:column headerText="Remove">
+            <p:column rendered="#{p:userPrincipal()!=null}" headerText="Remove" >
                 <p:commandButton icon="ui-icon-trash" title="Remove" action="#{categoryBean.onRemoveCategory(category)}" update=":categoryForm:categoryTable" />
             </p:column>
         </p:dataTable>
-        <p:commandButton value="Add category" action="#{categoryBean.onCategoryAdd()}" oncomplete="PF('CategoryDlg').show()" update=":CategoryDlgId" />
+        <p:commandButton rendered="#{p:userPrincipal()!=null}" value="Add category" action="#{categoryBean.onCategoryAdd()}" oncomplete="PF('CategoryDlg').show()" update=":CategoryDlgId" />
     </h:form>
+
+    <p:link value="Link to protected page" outcome="/restricted/restricted.xhtml" />
     <p:dialog id="CategoryDlgId" widgetVar="CategoryDlg" dynamic="true" modal="true" >
         <h:form>
 

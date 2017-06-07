@@ -4,16 +4,15 @@
     <groupId>com.project</groupId>
     <artifactId>notices</artifactId>
     <version>1.0</version>
+    <packaging>pom</packaging>
+    <name>notices</name>
 
     <modules>
         <module>notices-ear</module>
         <module>notices-ejb</module>
         <module>notices-web</module>
     </modules>
-
-    <packaging>pom</packaging>
-    <name>notices</name>
-
+    
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>

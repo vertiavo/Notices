@@ -2,6 +2,7 @@ package com.project.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by vertiavo on 18.05.17.
@@ -14,9 +15,15 @@ public class Author implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String firstName;
+
     private String lastName;
+
     private String email;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.PERSIST)
+    private List<Notice> notices;
 
     public Long getId() {
         return id;
@@ -44,6 +51,14 @@ public class Author implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Notice> getNotices() {
+        return notices;
+    }
+
+    public void setNotices(List<Notice> notices) {
+        this.notices = notices;
     }
 
     @Override

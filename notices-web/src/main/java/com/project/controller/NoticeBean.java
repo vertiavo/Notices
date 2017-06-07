@@ -1,6 +1,10 @@
-package com.project;
+package com.project.controller;
 
+import com.project.ejb.AuthorDao;
+import com.project.ejb.CategoryDao;
 import com.project.ejb.NoticeDao;
+import com.project.model.Author;
+import com.project.model.Category;
 import com.project.model.Notice;
 import org.primefaces.context.RequestContext;
 
@@ -22,10 +26,28 @@ public class NoticeBean implements Serializable {
     @EJB
     private NoticeDao dao;
 
+    @EJB
+    private AuthorDao daoAuthor;
+
+    @EJB
+    private CategoryDao daoCategory;
+
+    private Author author;
+
+    private Category category;
+
     private Notice newNotice = new Notice();
 
     public List<Notice> getNotices() {
         return dao.findAll();
+    }
+
+    public List<Author> getAuthors() {
+        return daoAuthor.findAll();
+    }
+
+    public List<Category> getCategories() {
+        return daoCategory.findAll();
     }
 
     public void onRemoveNotice(Notice notice) {
@@ -37,6 +59,8 @@ public class NoticeBean implements Serializable {
     }
 
     public void onNoticeAdded() {
+        newNotice.setAuthor(author);
+        newNotice.setCategory(category);
         newNotice.setDate(new Date());
         dao.save(newNotice);
         RequestContext.getCurrentInstance().execute("PF('NoticeDlg').hide()");
@@ -48,6 +72,22 @@ public class NoticeBean implements Serializable {
 
     public void setNewNotice(Notice newNotice) {
         this.newNotice = newNotice;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
 }

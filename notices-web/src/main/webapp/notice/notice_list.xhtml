@@ -11,27 +11,27 @@
 </h:head>
 <h:body>
     <h:form id="noticeForm">
-    <p:dataTable id="noticeTable" value="#{noticeBean.notices}" var="notice" >
-        <p:column headerText="Title" >
-            #{notice.title}
-        </p:column>
-        <p:column headerText="Category">
-            #{notice.category}
-        </p:column>
-        <p:column headerText="Author">
-            #{notice.author}
-        </p:column>
-        <p:column headerText="Content">
-            #{notice.content}
-        </p:column>
-        <p:column headerText="Date">
-            #{notice.date}
-        </p:column>
-        <p:column headerText="Remove">
-            <p:commandButton icon="ui-icon-trash" title="Remove" action="#{noticeBean.onRemoveNotice(notice)}" update=":noticeForm:noticeTable" />
-        </p:column>
-    </p:dataTable>
-    <p:commandButton value="Add notice" action="#{noticeBean.onNoticeAdd()}" oncomplete="PF('NoticeDlg').show()" update=":NoticeDlgId" />
+        <p:dataTable id="noticeTable" value="#{noticeBean.notices}" var="notice" >
+            <p:column headerText="Title" >
+                #{notice.title}
+            </p:column>
+            <p:column headerText="Category">
+                #{notice.category}
+            </p:column>
+            <p:column headerText="Author">
+                #{notice.author}
+            </p:column>
+            <p:column headerText="Content">
+                #{notice.content}
+            </p:column>
+            <p:column headerText="Date">
+                #{notice.date}
+            </p:column>
+            <p:column headerText="Remove">
+                <p:commandButton icon="ui-icon-trash" title="Remove" action="#{noticeBean.onRemoveNotice(notice)}" update=":noticeForm:noticeTable" />
+            </p:column>
+        </p:dataTable>
+        <p:commandButton value="Add notice" action="#{noticeBean.onNoticeAdd()}" oncomplete="PF('NoticeDlg').show()" update=":NoticeDlgId" />
     </h:form>
 
     <p:dialog id="NoticeDlgId" widgetVar="NoticeDlg" dynamic="true" modal="true" >
@@ -46,14 +46,14 @@
                 <p:message for="titleId" id="msgTitle" display="icon" />
 
                 <p:outputLabel value="Category" for="categoryId"/>
-                <p:selectOneMenu id="categoryId" value="#{noticeBean.newNotice.category}" required="true" style="width:125px">
-                    <f:selectItems value="#{categoryBean.categories}" />
+                <p:selectOneMenu id="categoryId" value="#{noticeBean.category}" required="true" style="width:125px">
+                    <f:selectItems value="#{noticeBean.categories}" var="category" itemValue="#{category}"/>
                 </p:selectOneMenu>
                 <p:message for="categoryId" id="msgCategory" display="icon" />
 
                 <p:outputLabel value="Author" for="authorId"/>
-                <p:selectOneMenu id="authorId" value="#{noticeBean.newNotice.author}" required="true" style="width:125px">
-                    <f:selectItems value="#{authorBean.authors}" />
+                <p:selectOneMenu id="authorId" value="#{noticeBean.author}" required="true" style="width:125px">
+                    <f:selectItems value="#{noticeBean.authors}" var="author" itemValue="#{author}" />
                 </p:selectOneMenu>
                 <p:message for="authorId" id="msgAuthor" display="icon" />
 
