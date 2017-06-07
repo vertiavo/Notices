@@ -5,4 +5,8 @@
         <role-name>ROLE_USER</role-name>
         <group-name>USERS</group-name>
     </security-role-mapping>
+    <security-role-mapping>
+        <role-name>ROLE_ADMIN</role-name>
+        <group-name>ADMINS</group-name>
+    </security-role-mapping>
 </glassfish-application>
