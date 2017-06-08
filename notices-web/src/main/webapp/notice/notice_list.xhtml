@@ -46,7 +46,7 @@
                 <p:message for="titleId" id="msgTitle" display="icon" />
 
                 <p:outputLabel value="Category" for="categoryId"/>
-                <p:selectOneMenu id="categoryId" value="#{noticeBean.category}" required="true" style="width:125px">
+                <p:selectOneMenu id="categoryId" value="#{noticeBean.category}" converter="category" required="true" style="width:125px">
                     <f:selectItems value="#{noticeBean.categories}" var="category" itemValue="#{category}"/>
                 </p:selectOneMenu>
                 <p:message for="categoryId" id="msgCategory" display="icon" />
@@ -60,10 +60,6 @@
                 <p:outputLabel value="Content" for="contentId"/>
                 <p:inputText id="contentId" value="#{noticeBean.newNotice.content}" required="true" />
                 <p:message for="contentId" id="msgContent" display="icon" />
-
-                <!--<p:outputLabel value="Date" for="dateId"/>-->
-                <!--<p:calendar id="dateId" value="#{noticeBean.newNotice.date}" pattern="dd-MM-yyyy" mask="true" />-->
-                <!--<p:message for="dateId" id="msgDate" display="icon" />-->
 
             </p:panelGrid>
 

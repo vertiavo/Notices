@@ -17,7 +17,7 @@ import com.project.util.JSF;
  */
 
 @Named
-@RequestScoped
+@ViewScoped
 public class LoginBean implements Serializable {
 
     private String username;
@@ -54,6 +54,7 @@ public class LoginBean implements Serializable {
             JSF.addErrorMessage("Invalid credentials");
         }
     }
+
     // akcja wylogowania
     public void logout() throws IOException {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();

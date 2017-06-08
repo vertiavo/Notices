@@ -19,5 +19,5 @@ public class JSF {
     private static void addMessage(FacesMessage.Severity severity, String message) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(severity, message, message));
     }
-
+    
 }
