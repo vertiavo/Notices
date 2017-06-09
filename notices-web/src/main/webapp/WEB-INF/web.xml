@@ -16,28 +16,4 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
-    <security-constraint>
-        <display-name>Constraint1</display-name>
-        <web-resource-collection>
-            <web-resource-name>restricted</web-resource-name>
-            <description/>
-            <url-pattern>/restricted/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <description/>
-            <role-name>ROLE_USER</role-name>
-        </auth-constraint>
-    </security-constraint>
-    <login-config>
-        <auth-method>FORM</auth-method>
-        <realm-name>realm1</realm-name>
-        <form-login-config>
-            <form-login-page>/login.xhtml</form-login-page>
-            <form-error-page>/error.xhtml</form-error-page>
-        </form-login-config>
-    </login-config>
-    <security-role>
-        <description/>
-        <role-name>ROLE_USER</role-name>
-    </security-role>
 </web-app>

@@ -3,70 +3,99 @@
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xml:lang="en" lang="en"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
-<h:head>
-    <title>Notices</title>
-</h:head>
-<h:body>
-    <h:form id="noticeForm">
-        <p:dataTable id="noticeTable" value="#{noticeBean.notices}" var="notice" >
-            <p:column headerText="Title" >
-                #{notice.title}
-            </p:column>
-            <p:column headerText="Category">
-                #{notice.category}
-            </p:column>
-            <p:column headerText="Author">
-                #{notice.author}
-            </p:column>
-            <p:column headerText="Content">
-                #{notice.content}
-            </p:column>
-            <p:column headerText="Date">
-                #{notice.date}
-            </p:column>
-            <p:column headerText="Remove">
-                <p:commandButton icon="ui-icon-trash" title="Remove" action="#{noticeBean.onRemoveNotice(notice)}" update=":noticeForm:noticeTable" />
-            </p:column>
-        </p:dataTable>
-        <p:commandButton value="Add notice" action="#{noticeBean.onNoticeAdd()}" oncomplete="PF('NoticeDlg').show()" update=":NoticeDlgId" />
-    </h:form>
+<ui:composition template="../template.xhtml">
+    <ui:define name="top">
+        <div class="masthead clearfix">
+            <div class="inner">
+                <h3 class="masthead-brand">Notices</h3>
 
-    <p:dialog id="NoticeDlgId" widgetVar="NoticeDlg" dynamic="true" modal="true" >
-        <h:form>
+                <ul class="nav masthead-nav">
+                    <li>
+                        <a href="../index.xhtml">Home page</a>
+                    </li>
 
-            <p:panelGrid columns="3" cellpadding="5">
-                <p:outputLabel value="Title" for="titleId"/>
-                <p:inputText id="titleId" value="#{noticeBean.newNotice.title}" required="true" >
-                    <f:validateLength minimum="2" />
-                    <p:ajax update="msgTitle" event="keyup" />
-                </p:inputText>
-                <p:message for="titleId" id="msgTitle" display="icon" />
+                    <li>
+                        <a href="../category/category_list.xhtml">Categories</a>
+                    </li>
 
-                <p:outputLabel value="Category" for="categoryId"/>
-                <p:selectOneMenu id="categoryId" value="#{noticeBean.category}" converter="category" required="true" style="width:125px">
-                    <f:selectItems value="#{noticeBean.categories}" var="category" itemValue="#{category}"/>
-                </p:selectOneMenu>
-                <p:message for="categoryId" id="msgCategory" display="icon" />
+                    <li class="active">
+                        <a href="../notice/notice_list.xhtml">Notices</a>
+                    </li>
 
-                <p:outputLabel value="Author" for="authorId"/>
-                <p:selectOneMenu id="authorId" value="#{noticeBean.author}" required="true" style="width:125px">
-                    <f:selectItems value="#{noticeBean.authors}" var="author" itemValue="#{author}" />
-                </p:selectOneMenu>
-                <p:message for="authorId" id="msgAuthor" display="icon" />
+                    <li>
+                        <a href="../author/author_list.xhtml">Authors</a>
+                    </li>
 
-                <p:outputLabel value="Content" for="contentId"/>
-                <p:inputText id="contentId" value="#{noticeBean.newNotice.content}" required="true" />
-                <p:message for="contentId" id="msgContent" display="icon" />
-
-            </p:panelGrid>
-
-            <p:commandButton value="Cancel" oncomplete="PF('NoticeDlg').hide()" icon="ui-icon-close" />
-            <p:commandButton value="Ok" action="#{noticeBean.onNoticeAdded()}" update=":noticeForm:noticeTable" icon="ui-icon-check" />
-
+                    <li>
+                        <a href="#">Sign in</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="noticeForm">
+            <p:dataTable id="noticeTable" value="#{noticeBean.notices}" var="notice" >
+                <p:column headerText="Title" >
+                    #{notice.title}
+                </p:column>
+                <p:column headerText="Category">
+                    #{notice.category}
+                </p:column>
+                <p:column headerText="Author">
+                    #{notice.author}
+                </p:column>
+                <p:column headerText="Content">
+                    #{notice.content}
+                </p:column>
+                <p:column headerText="Date">
+                    #{notice.date}
+                </p:column>
+                <p:column headerText="Remove">
+                    <p:commandButton icon="ui-icon-trash" title="Remove" action="#{noticeBean.onRemoveNotice(notice)}" update=":noticeForm:noticeTable" />
+                </p:column>
+            </p:dataTable>
+            <p:commandButton value="Add notice" action="#{noticeBean.onNoticeAdd()}" oncomplete="PF('NoticeDlg').show()" update=":NoticeDlgId" />
         </h:form>
-    </p:dialog>
-</h:body>
+
+        <p:dialog id="NoticeDlgId" widgetVar="NoticeDlg" dynamic="true" modal="true" >
+            <h:form>
+
+                <p:panelGrid columns="3" cellpadding="5">
+                    <p:outputLabel value="Title" for="titleId"/>
+                    <p:inputText id="titleId" value="#{noticeBean.newNotice.title}" required="true" >
+                        <f:validateLength minimum="2" />
+                        <p:ajax update="msgTitle" event="keyup" />
+                    </p:inputText>
+                    <p:message for="titleId" id="msgTitle" display="icon" />
+
+                    <p:outputLabel value="Category" for="categoryId"/>
+                    <p:selectOneMenu id="categoryId" value="#{noticeBean.selectedC}" required="true" style="width:125px">
+                        <f:selectItems value="#{noticeBean.categories}" var="category" itemValue="#{category.id}"/>
+                    </p:selectOneMenu>
+                    <p:message for="categoryId" id="msgCategory" display="icon" />
+
+                    <p:outputLabel value="Author" for="authorId"/>
+                    <p:selectOneMenu id="authorId" value="#{noticeBean.selectedA}" required="true" style="width:125px">
+                        <f:selectItems value="#{noticeBean.authors}" var="author" itemValue="#{author.id}"/>
+                    </p:selectOneMenu>
+                    <p:message for="authorId" id="msgAuthor" display="icon" />
+
+                    <p:outputLabel value="Content" for="contentId"/>
+                    <p:inputText id="contentId" value="#{noticeBean.newNotice.content}" required="true" />
+                    <p:message for="contentId" id="msgContent" display="icon" />
+
+                </p:panelGrid>
+
+                <p:commandButton value="Cancel" oncomplete="PF('NoticeDlg').hide()" icon="ui-icon-close" />
+                <p:commandButton value="Ok" action="#{noticeBean.onNoticeAdded()}" update=":noticeForm:noticeTable" icon="ui-icon-check" />
+
+            </h:form>
+        </p:dialog>
+    </ui:define>
+</ui:composition>
 </html>

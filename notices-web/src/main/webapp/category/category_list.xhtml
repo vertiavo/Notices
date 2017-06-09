@@ -2,56 +2,71 @@
 <!DOCTYPE html
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
       xml:lang="en" lang="en"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
-    <title>Categories</title>
-</h:head>
-<h:body>
-    <h:form id="categoryForm">
-        <p:panel header="Categories">
-            <p:outputPanel rendered="#{p:userPrincipal()==null}">
-                <p:button value="Login" outcome="/login.xhtml" style="margin-right: 10px;"/>
-                <h:outputText value="You are not logged in! Add/Remove options are not available"/>
+<ui:composition template="../template.xhtml">
+    <ui:define name="top">
+        <div class="masthead clearfix">
+            <div class="inner">
+                <h3 class="masthead-brand">Notices</h3>
 
-            </p:outputPanel>
-            <p:outputPanel rendered="#{p:userPrincipal()!=null}">
-                <p:commandButton value="Logout" action="#{loginBean.logout}" style="margin-right: 10px;"/>
-                <h:outputText value="You are logged in as: #{p:remoteUser()}"/>
-            </p:outputPanel>
-        </p:panel>
+                <ul class="nav masthead-nav">
+                    <li>
+                        <a href="../index.xhtml">Home page</a>
+                    </li>
 
-        <p:dataTable id="categoryTable" value="#{categoryBean.categories}" var="category" >
-            <p:column headerText="Title" >
-                #{category.title}
-            </p:column>
-            <p:column rendered="#{p:userPrincipal()!=null}" headerText="Remove" >
-                <p:commandButton icon="ui-icon-trash" title="Remove" action="#{categoryBean.onRemoveCategory(category)}" update=":categoryForm:categoryTable" />
-            </p:column>
-        </p:dataTable>
-        <p:commandButton rendered="#{p:userPrincipal()!=null}" value="Add category" action="#{categoryBean.onCategoryAdd()}" oncomplete="PF('CategoryDlg').show()" update=":CategoryDlgId" />
-    </h:form>
+                    <li class="active">
+                        <a href="../category/category_list.xhtml">Categories</a>
+                    </li>
 
-    <p:link value="Link to protected page" outcome="/restricted/restricted.xhtml" />
-    <p:dialog id="CategoryDlgId" widgetVar="CategoryDlg" dynamic="true" modal="true" >
-        <h:form>
+                    <li>
+                        <a href="../notice/notice_list.xhtml">Notices</a>
+                    </li>
 
-            <p:panelGrid columns="3" cellpadding="5">
-                <p:outputLabel value="Title" for="titleId"/>
-                <p:inputText id="titleId" value="#{categoryBean.newCategory.title}" required="true" >
-                    <f:validateLength minimum="2" />
-                    <p:ajax update="msgTitle" event="keyup" />
-                </p:inputText>
-                <p:message for="titleId" id="msgTitle" display="icon" />
-            </p:panelGrid>
+                    <li>
+                        <a href="../author/author_list.xhtml">Authors</a>
+                    </li>
 
-            <p:commandButton value="Cancel" oncomplete="PF('CategoryDlg').hide()" icon="ui-icon-close" />
-            <p:commandButton value="Ok" action="#{categoryBean.onCategoryAdded()}" update=":categoryForm:categoryTable" icon="ui-icon-check" />
-
+                    <li>
+                        <a href="#">Sign in</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </ui:define>
+    <ui:define name="content">
+        <h:form id="categoryForm">
+            <p:dataTable id="categoryTable" value="#{categoryBean.categories}" var="category" >
+                <p:column headerText="Title" >
+                    #{category.title}
+                </p:column>
+                <p:column headerText="Remove" >
+                    <p:commandButton icon="ui-icon-trash" title="Remove" action="#{categoryBean.onRemoveCategory(category)}" update=":categoryForm:categoryTable" />
+                </p:column>
+            </p:dataTable>
+            <p:commandButton value="Add category" action="#{categoryBean.onCategoryAdd()}" oncomplete="PF('CategoryDlg').show()" update=":CategoryDlgId" />
         </h:form>
-    </p:dialog>
-</h:body>
+
+        <p:dialog id="CategoryDlgId" widgetVar="CategoryDlg" dynamic="true" modal="true" >
+            <h:form>
+
+                <p:panelGrid columns="3" cellpadding="5">
+                    <p:outputLabel value="Title" for="titleId"/>
+                    <p:inputText id="titleId" value="#{categoryBean.newCategory.title}" required="true" >
+                        <f:validateLength minimum="2" />
+                        <p:ajax update="msgTitle" event="keyup" />
+                    </p:inputText>
+                    <p:message for="titleId" id="msgTitle" display="icon" />
+                </p:panelGrid>
+
+                <p:commandButton value="Cancel" oncomplete="PF('CategoryDlg').hide()" icon="ui-icon-close" />
+                <p:commandButton value="Ok" action="#{categoryBean.onCategoryAdded()}" update=":categoryForm:categoryTable" icon="ui-icon-check" />
+
+            </h:form>
+        </p:dialog>
+    </ui:define>
+</ui:composition>
 </html>

@@ -36,6 +36,10 @@ public class NoticeBean implements Serializable {
 
     private Category category;
 
+    private Long selectedC;
+
+    private Long selectedA;
+
     private Notice newNotice = new Notice();
 
     public List<Notice> getNotices() {
@@ -59,6 +63,18 @@ public class NoticeBean implements Serializable {
     }
 
     public void onNoticeAdded() {
+        List<Category> categories = getCategories();
+        for (Category c : categories) {
+            if (c.getId() == selectedC) {
+                category = c;
+            }
+        }
+        List<Author> authors = getAuthors();
+        for (Author a : authors) {
+            if (a.getId() == selectedA) {
+                author = a;
+            }
+        }
         newNotice.setAuthor(author);
         newNotice.setCategory(category);
         newNotice.setDate(new Date());
@@ -90,4 +106,19 @@ public class NoticeBean implements Serializable {
         this.category = category;
     }
 
+    public Long getSelectedC() {
+        return selectedC;
+    }
+
+    public void setSelectedC(Long selected) {
+        this.selectedC = selected;
+    }
+
+    public Long getSelectedA() {
+        return selectedA;
+    }
+
+    public void setSelectedA(Long selectedA) {
+        this.selectedA = selectedA;
+    }
 }
