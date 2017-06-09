@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xml:lang="en" lang="en"
+      xmlns:p="http://primefaces.org/ui"
+>
+<ui:composition template="../template.xhtml">
+    <ui:define name="top">
+        <div class="masthead clearfix">
+            <div class="inner">
+                <h3 class="masthead-brand">Notices</h3>
+
+                <ul class="nav masthead-nav">
+                    <li>
+                        <a href="../index.xhtml">Home page</a>
+                    </li>
+
+                    <li class="active">
+                        <a href="../category/categories.xhtml">Categories</a>
+                    </li>
+
+                    <li>
+                        <a href="../notice/notices.xhtml">Notices</a>
+                    </li>
+
+                    <li>
+                        <a href="../author/authors.xhtml">Authors</a>
+                    </li>
+
+                    <li>
+                        <a href="../category/category_list.xhtml">Log in</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </ui:define>
+    <ui:define name="content">
+
+        <p:dataTable id="categoryTable" value="#{categoryBean.categories}" var="category" >
+            <p:column headerText="Title" >
+                #{category.title}
+            </p:column>
+        </p:dataTable>
+
+    </ui:define>
+</ui:composition>
+</html>
