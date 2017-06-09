@@ -40,9 +40,4 @@ public abstract class AbstractDao<T, ID> {
         return em.createQuery(cq).getResultList();
     }
 
-//    public List<T> findPublished() {
-//        TypedQuery<T> query = em.createNamedQuery("Notice.findPublished", entityClass);
-//        return query.getResultList();
-//    }
-
 }

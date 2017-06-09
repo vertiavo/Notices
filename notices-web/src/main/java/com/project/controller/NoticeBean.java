@@ -9,6 +9,8 @@ import com.project.model.Notice;
 import org.primefaces.context.RequestContext;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -85,6 +87,17 @@ public class NoticeBean implements Serializable {
         newNotice.setType("NEW");
         dao.save(newNotice);
         RequestContext.getCurrentInstance().execute("PF('NoticeDlg').hide()");
+    }
+
+    public void publish(Notice toPublish) {
+        toPublish.setType("PUBLISHED");
+        addMessage("Notice published");
+        dao.update(toPublish);
+    }
+
+    public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
     public Notice getNewNotice() {

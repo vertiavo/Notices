@@ -41,6 +41,9 @@
     <ui:define name="content">
 
         <h:form id="noticeForm">
+
+            <p:growl id="messages" />
+
             <p:dataTable id="noticeTable" value="#{noticeBean.allNotices}" var="notice" >
                 <p:column headerText="Title" >
                     #{notice.title}
@@ -57,7 +60,8 @@
                 <p:column headerText="Date">
                     #{notice.date}
                 </p:column>
-                <p:column headerText="Remove">
+                <p:column headerText="Tools">
+                    <p:commandButton rendered="#{notice.type=='NEW'}" icon="ui-icon-disk" title="Publish" action="#{noticeBean.publish(notice)}" update=":noticeForm:messages :noticeForm:noticeTable" />
                     <p:commandButton icon="ui-icon-trash" title="Remove" action="#{noticeBean.onRemoveNotice(notice)}" update=":noticeForm:noticeTable" />
                 </p:column>
             </p:dataTable>
