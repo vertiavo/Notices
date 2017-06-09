@@ -3,6 +3,7 @@
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"
       xml:lang="en" lang="en"
       xmlns:p="http://primefaces.org/ui"
 >
@@ -38,17 +39,50 @@
     </ui:define>
     <ui:define name="content">
 
-        <p:dataTable id="authorTable" value="#{authorBean.authors}" var="author" >
-            <p:column headerText="First Name" >
-                #{author.firstName}
-            </p:column>
-            <p:column headerText="Last Name">
-                #{author.lastName}
-            </p:column>
-            <p:column headerText="E-mail">
-                #{author.email}
-            </p:column>
-        </p:dataTable>
+        <h:form id="authorForm">
+
+            <p:dataTable id="authorTable" value="#{authorBean.authors}" var="author" >
+                <p:column headerText="First Name" >
+                    #{author.firstName}
+                </p:column>
+                <p:column headerText="Last Name">
+                    #{author.lastName}
+                </p:column>
+                <p:column headerText="E-mail">
+                    #{author.email}
+                </p:column>
+            </p:dataTable>
+            <p:commandButton value="Add author" action="#{authorBean.onAuthorAdd()}" oncomplete="PF('AuthorDlg').show()" update=":AuthorDlgId" />
+        </h:form>
+
+        <p:dialog id="AuthorDlgId" widgetVar="AuthorDlg" dynamic="true" modal="true" >
+            <h:form>
+
+                <p:panelGrid columns="3" cellpadding="5">
+                    <p:outputLabel value="First Name" for="firstNameId"/>
+                    <p:inputText id="firstNameId" value="#{authorBean.newAuthor.firstName}" required="true" >
+                        <f:validateLength minimum="3" />
+                        <p:ajax update="msgFName" event="keyup" />
+                    </p:inputText>
+                    <p:message for="firstNameId" id="msgFName" display="icon" />
+
+                    <p:outputLabel value="Last Name" for="lastNameId"/>
+                    <p:inputText id="lastNameId" value="#{authorBean.newAuthor.lastName}" required="true" >
+                        <f:validateLength minimum="3" />
+                        <p:ajax update="msgLName" event="keyup" />
+                    </p:inputText>
+                    <p:message for="lastNameId" id="msgLName" display="icon" />
+
+                    <p:outputLabel value="E-mail" for="emailId"/>
+                    <p:inputText id="emailId" value="#{authorBean.newAuthor.email}" required="true"/>
+
+                </p:panelGrid>
+
+                <p:commandButton value="Cancel" oncomplete="PF('AuthorDlg').hide()" icon="ui-icon-close" />
+                <p:commandButton value="Ok" action="#{authorBean.onAuthorAdded()}" update=":authorForm:authorTable" icon="ui-icon-check" />
+
+            </h:form>
+        </p:dialog>
 
     </ui:define>
 </ui:composition>

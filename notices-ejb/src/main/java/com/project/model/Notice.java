@@ -9,7 +9,10 @@ import java.util.Date;
  */
 
 @Entity
-@NamedQuery(name = "Notice.findAll", query = "SELECT n FROM Notice n")
+@NamedQueries({
+        @NamedQuery(name = "Notice.findAll", query = "SELECT n FROM Notice n"),
+        @NamedQuery(name = "Notice.findPublished", query = "SELECT n FROM Notice n WHERE n.type = 'PUBLISHED'")
+})
 public class Notice implements Serializable {
 
     @Id
@@ -28,7 +31,7 @@ public class Notice implements Serializable {
 
     private Date date;
 
-    private Type type;
+    private String type;
 
     public Long getId() {
         return id;
@@ -74,11 +77,11 @@ public class Notice implements Serializable {
         this.date = date;
     }
 
-    public Type getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(String type) {
         this.type = type;
     }
 

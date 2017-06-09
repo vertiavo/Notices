@@ -37,9 +37,11 @@
             </div>
         </div>
     </ui:define>
+
     <ui:define name="content">
+
         <h:form id="noticeForm">
-            <p:dataTable id="noticeTable" value="#{noticeBean.notices}" var="notice" >
+            <p:dataTable id="noticeTable" value="#{noticeBean.allNotices}" var="notice" >
                 <p:column headerText="Title" >
                     #{notice.title}
                 </p:column>
@@ -74,13 +76,13 @@
                     <p:message for="titleId" id="msgTitle" display="icon" />
 
                     <p:outputLabel value="Category" for="categoryId"/>
-                    <p:selectOneMenu id="categoryId" value="#{noticeBean.selectedC}" required="true" style="width:125px">
+                    <p:selectOneMenu id="categoryId" value="#{noticeBean.selectedC}" required="true">
                         <f:selectItems value="#{noticeBean.categories}" var="category" itemValue="#{category.id}"/>
                     </p:selectOneMenu>
                     <p:message for="categoryId" id="msgCategory" display="icon" />
 
                     <p:outputLabel value="Author" for="authorId"/>
-                    <p:selectOneMenu id="authorId" value="#{noticeBean.selectedA}" required="true" style="width:125px">
+                    <p:selectOneMenu id="authorId" value="#{noticeBean.selectedA}" required="true">
                         <f:selectItems value="#{noticeBean.authors}" var="author" itemValue="#{author.id}"/>
                     </p:selectOneMenu>
                     <p:message for="authorId" id="msgAuthor" display="icon" />
@@ -96,6 +98,8 @@
 
             </h:form>
         </p:dialog>
+
     </ui:define>
+
 </ui:composition>
 </html>

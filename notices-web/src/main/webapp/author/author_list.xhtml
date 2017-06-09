@@ -8,6 +8,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="../template.xhtml">
+
     <ui:define name="top">
         <div class="masthead clearfix">
             <div class="inner">
@@ -37,7 +38,9 @@
             </div>
         </div>
     </ui:define>
+
     <ui:define name="content">
+
         <h:form id="authorForm">
 
             <p:dataTable id="authorTable" value="#{authorBean.authors}" var="author" >
@@ -85,6 +88,8 @@
 
             </h:form>
         </p:dialog>
+
     </ui:define>
+
 </ui:composition>
 </html>

@@ -2,6 +2,7 @@ package com.project.ejb;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
@@ -38,5 +39,10 @@ public abstract class AbstractDao<T, ID> {
         cq.select(cq.from(entityClass));
         return em.createQuery(cq).getResultList();
     }
+
+//    public List<T> findPublished() {
+//        TypedQuery<T> query = em.createNamedQuery("Notice.findPublished", entityClass);
+//        return query.getResultList();
+//    }
 
 }

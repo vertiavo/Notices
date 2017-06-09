@@ -43,6 +43,10 @@ public class NoticeBean implements Serializable {
     private Notice newNotice = new Notice();
 
     public List<Notice> getNotices() {
+        return dao.findPublished();
+    }
+
+    public List<Notice> getAllNotices() {
         return dao.findAll();
     }
 
@@ -78,6 +82,7 @@ public class NoticeBean implements Serializable {
         newNotice.setAuthor(author);
         newNotice.setCategory(category);
         newNotice.setDate(new Date());
+        newNotice.setType("NEW");
         dao.save(newNotice);
         RequestContext.getCurrentInstance().execute("PF('NoticeDlg').hide()");
     }
