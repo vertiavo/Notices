@@ -13,6 +13,10 @@
       <element id="archive" name="notices-web-1.0.war">
         <element id="artifact" artifact-name="notices-web:war exploded" />
       </element>
+      <element id="directory" name="lib">
+        <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.8.1" />
+        <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.8.1" />
+      </element>
     </root>
   </artifact>
 </component>
